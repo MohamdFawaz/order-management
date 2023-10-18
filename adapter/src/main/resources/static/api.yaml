@@ -1,0 +1,46 @@
+openapi: 3.0.0
+
+info:
+  version: v0.1.0
+  title: Order Management API
+
+servers:
+  - url: http://localhost:8080/api/v1
+    description: Local development server
+
+paths:
+  /order:
+    get:
+      tags:
+        - Order
+      summary: "List user orders"
+      responses:
+        "200":
+          description: "Orders List"
+        "400":
+          description: "error detail in case of Bad request"
+
+        "500":
+          description: "error detail in case of server error"
+
+      operationId: getUserOrders
+
+components:
+  schemas:
+    error:
+      properties:
+        message:
+          description: Error Description
+          type: string
+        code:
+          description: Error Code
+          type: number
+
+
+  responses:
+    Error:
+      description: Error occurred
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
