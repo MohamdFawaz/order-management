@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  api:
-    container_name: api
-    image: order-management
+  order-management:
+    container_name: order-management
+    image: om
     build:
       context: .
       dockerfile: Dockerfile

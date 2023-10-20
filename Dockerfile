@@ -1,10 +1,15 @@
-# AS <NAME> to name this stage as maven
+FROM maven:3.9.4-amazoncorretto-17 AS MAVEN_TOOL_CHAIN
+
+COPY . /tmp/
+WORKDIR /tmp/
+RUN mvn -B dependency:go-offline -f pom.xml -s /usr/share/maven/ref/settings-docker.xml
+RUN mvn -B -X -s /usr/share/maven/ref/settings-docker.xml -Dmaven.test.skip package
+
 FROM openjdk:17-oracle
 
 EXPOSE 8080
 
-COPY /application/target/application-1.0.0.jar /usr/app/
-WORKDIR /usr/app
+RUN mkdir /app
+COPY --from=MAVEN_TOOL_CHAIN /tmp/application/target/*.jar /app/spring-boot-application.jar
 
-CMD ["java","-jar","application-1.0.0.jar"]
-
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app/spring-boot-application.jar"]

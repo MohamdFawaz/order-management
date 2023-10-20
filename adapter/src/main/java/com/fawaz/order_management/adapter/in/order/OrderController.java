@@ -11,11 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-
-@Tag(name = "order", description = "Order operations")
 @RestController
-@RequestMapping("orders")
 @RequiredArgsConstructor
+@Tag(name = "order", description = "Order operations")
+@RequestMapping("orders")
 public class OrderController {
     private final OrderServicePort orderServicePort;
 
