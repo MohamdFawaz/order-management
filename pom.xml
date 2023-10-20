@@ -29,6 +29,7 @@
         <apache.commons.version>4.4</apache.commons.version>
         <springdoc.openapi.version>1.6.9</springdoc.openapi.version>
         <org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
+        <com.h2database.version>2.1.214</com.h2database.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -79,7 +80,7 @@
                 <groupId>com.h2database</groupId>
                 <artifactId>h2</artifactId>
                 <scope>runtime</scope>
-                <version>2.1.214</version>
+                <version>${com.h2database.version}</version>
             </dependency>
             <dependency>
                 <groupId>javax.validation</groupId>

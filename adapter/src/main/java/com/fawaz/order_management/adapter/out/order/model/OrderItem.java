@@ -1,31 +1,31 @@
 package com.fawaz.order_management.adapter.out.order.model;
 
 
+import com.fawaz.order_management.adapter.out.product.model.Product;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Setter
 @Getter
-@Table(name = "orders")
-public class Order {
+@Table(name = "order_items")
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Integer id;
 
-    private Integer totalAmount;
+    private Integer quantity;
 
-    private LocalDateTime createdAt;
+    @ManyToOne
+    Order order;
 
-    @OneToMany
-    List<OrderItem> orderItems;
+    @ManyToOne
+    Product product;
 
 
 }
